@@ -2,6 +2,7 @@
 
 - **BUGFIX:** *"Filme/Blacklist öffnen..."* Eintrag wurde in *"Filme/Blacklist bearbeiten..."* umbenannt und die Icons vereinheitlicht.
 - Im Download-Tab wurde der "Filter anzeigen/ausblenden"-Button an die anderen ToolBar-Buttons angegliedert.
+
 <u>**13.9.0**</u>
 
 - **Dies ist die letzte Version mit Unterstützung für 32-Bit Betriebssysteme. Ab Version 14 werden nur noch 64-Bit Betriebssysteme unterstützt. (Minimum: Windows 10, macOS 10.14 (Mojave), Ubuntu 18.04 LTS, Debian 8, centOS 7)**
