@@ -22,12 +22,7 @@ package org.jdesktop.swingx.plaf;
 
 import org.jdesktop.swingx.plaf.linux.LinuxLookAndFeelAddons;
 import org.jdesktop.swingx.plaf.macosx.MacOSXLookAndFeelAddons;
-import org.jdesktop.swingx.plaf.metal.MetalLookAndFeelAddons;
-import org.jdesktop.swingx.plaf.motif.MotifLookAndFeelAddons;
-import org.jdesktop.swingx.plaf.nimbus.NimbusLookAndFeelAddons;
 import org.jdesktop.swingx.plaf.windows.WindowsLookAndFeelAddons;
-
-import javax.swing.*;
 
 /**
  * Ease the work of creating an addon for a component.<br>
@@ -38,7 +33,7 @@ import javax.swing.*;
 @SuppressWarnings("nls")
 public abstract class AbstractComponentAddon implements ComponentAddon {
 
-    private String name;
+    private final String name;
 
     protected AbstractComponentAddon(String name) {
         this.name = name;
@@ -166,18 +161,10 @@ public abstract class AbstractComponentAddon implements ComponentAddon {
         DefaultsList defaults = new DefaultsList();
         if (isWindows(addon)) {
             addWindowsDefaults(addon, defaults);
-        } else if (isMetal(addon)) {
-            addMetalDefaults(addon, defaults);
         } else if (isMac(addon)) {
             addMacDefaults(addon, defaults);
-        } else if (isMotif(addon)) {
-            addMotifDefaults(addon, defaults);
-            // PENDING JW: the separation line here looks fishy
-            // what about Nimbus on Linux systems?
         } else if (isLinux(addon)) {
             addLinuxDefaults(addon, defaults);
-        } else if (isNimbus(addon)) {
-            addNimbusDefaults(addon, defaults);
         } else {
             // at least add basic defaults
             addBasicDefaults(addon, defaults);
@@ -197,13 +184,6 @@ public abstract class AbstractComponentAddon implements ComponentAddon {
     }
 
     /**
-     * @return true if the addon is the Metal addon or its subclasses
-     */
-    protected boolean isMetal(LookAndFeelAddons addon) {
-        return addon instanceof MetalLookAndFeelAddons;
-    }
-
-    /**
      * @return true if the addon is the Mac OS X addon or its subclasses
      */
     protected boolean isMac(LookAndFeelAddons addon) {
@@ -211,39 +191,10 @@ public abstract class AbstractComponentAddon implements ComponentAddon {
     }
 
     /**
-     * @return true if the addon is the Motif addon or its subclasses
-     */
-    protected boolean isMotif(LookAndFeelAddons addon) {
-        return addon instanceof MotifLookAndFeelAddons;
-    }
-
-    /**
      * @return true if the current look and feel is Linux
      */
     protected boolean isLinux(LookAndFeelAddons addon) {
         return addon instanceof LinuxLookAndFeelAddons;
-    }
-
-    /**
-     * @return true if the current look and feel is Nimbus
-     */
-    protected boolean isNimbus(LookAndFeelAddons addon) {
-        return addon instanceof NimbusLookAndFeelAddons;
-    }
-
-    /**
-     * @return true if the current look and feel is one of JGoodies Plastic l&fs
-     */
-    protected boolean isPlastic() {
-        return UIManager.getLookAndFeel().getClass().getName()
-                .contains("Plastic");
-    }
-
-    /**
-     * @return true if the current look and feel is Synth l&f
-     */
-    protected boolean isSynth() {
-        return UIManager.getLookAndFeel().getClass().getName().contains("ynth");
     }
 
 }
